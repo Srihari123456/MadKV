@@ -1,0 +1,12 @@
+[33m[1mFuzz testing configuration:[39m[22m Args {
+    num_clis: 3,
+    num_keys: 5,
+    num_ops: 5000,
+    conflict: true,
+    client_just_args: [
+        "p3::client",
+        "127.0.0.1:3666",
+    ],
+}
+[33m[1mFuzzing starts...[39m[22m
+  Progress:  called 150 / 15000  waited 150 / 15000  Progress:  called 301 / 15000  waited 300 / 15000  Progress:  called 451 / 15000  waited 450 / 15000  Progress:  called 602 / 15000  waited 600 / 15000  Progress:  called 750 / 15000  waited 750 / 15000  Progress:  called 902 / 15000  waited 900 / 15000  Progress:  called 1050 / 15000  waited 1050 / 15000  Progress:  called 1202 / 15000  waited 1200 / 15000  Progress:  called 1352 / 15000  waited 1350 / 15000  Progress:  called 1501 / 15000  waited 1500 / 15000  Progress:  called 1650 / 15000  waited 1650 / 15000  Progress:  called 1800 / 15000  waited 1800 / 15000  Progress:  called 1950 / 15000  waited 1950 / 15000  Progress:  called 2102 / 15000  waited 2100 / 15000  Progress:  called 2252 / 15000  waited 2250 / 15000  Progress:  called 2400 / 15000  waited 2400 / 15000  Progress:  called 2552 / 15000  waited 2550 / 15000  Progress:  called 2700 / 15000  waited 2700 / 15000  Progress:  called 2850 / 15000  waited 2850 / 15000  Progress:  called 3000 / 15000  waited 3000 / 15000  Progress:  called 3151 / 15000  waited 3150 / 15000  Progress:  called 3302 / 15000  waited 3300 / 15000  Progress:  called 3452 / 15000  waited 3450 / 15000  Progress:  called 3602 / 15000  waited 3600 / 15000

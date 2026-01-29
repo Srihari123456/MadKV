@@ -1,0 +1,73 @@
+syntax = "proto3";
+
+package keyvalue;
+
+// Define the key-value service
+service KeyValueStore {
+  rpc PutKey (KeyValueRequest) returns (KeyValueResponse);
+  rpc SwapKey (KeyValueRequest) returns (KeyValueResponse);
+  rpc GetKey (KeyValueRequest) returns (KeyValueResponse);
+  rpc ScanKey (KeyValueRequest) returns (ScanKeyValueResponse);
+  rpc DeleteKey (KeyValueRequest) returns (KeyValueResponse);
+
+  rpc AppendEntries (AppendEntriesRequest) returns (AppendEntriesResponse);
+  rpc RequestVote (RequestVoteType) returns (RequestVoteResponse);
+  rpc Heartbeat(HeartbeatRequest) returns (HeartbeatResponse);
+}
+
+
+// Unified request message for key-value operations
+message KeyValueRequest {
+  bytes key = 1;   // Using bytes to avoid UTF-8 overhead
+  optional bytes value = 2; // Only for Put/Swap operations
+}
+
+
+// Response message for key-value operations
+message KeyValueResponse {
+  bool success = 1; // Changed "message" from string to boolean to indicate operation status
+  optional bytes value = 2; // Only for Get/Swap operations
+  optional int64 leaderId = 3; // Redirection to client with key value response
+}
+
+
+// Response message for scanning, because server in single threaded and we cannot use print statements on client as it compromises correctness
+message ScanKeyValueResponse {
+  repeated bytes scanResponseKeys = 1;
+  repeated bytes scanResponseValues = 2;
+  optional int64 leaderId = 3; // Redirection to client with key value response
+}
+
+message AppendEntriesRequest {
+  int64 term = 1;
+  int64 leaderId = 2;
+  int64 prevLogIndex= 3;
+  int64 prevLogTerm = 4;
+  int64 leaderCommit = 5;
+  repeated int64 entriesTerm = 6;
+  repeated int64 entriesIndex = 7;
+  repeated bytes entriesCommand = 8;
+  optional bytes leaderIp = 9;
+}
+
+message AppendEntriesResponse {
+  int64 term = 1;
+  bool success = 2;
+}
+
+message RequestVoteType {
+  int64 term = 1;
+  int64 candidateId = 2; 
+  int64 lastLogIndex = 3;
+  int64 lastLogTerm = 4;
+}
+
+message RequestVoteResponse {
+  int64 term = 1;
+  bool voteGranted = 2;
+}
+
+message HeartbeatResponse{}
+message HeartbeatRequest{
+  int64 leaderId = 1; 
+}

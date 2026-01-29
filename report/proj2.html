@@ -1,0 +1,771 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>proj2.md</title>
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+
+<style>
+/* https://github.com/microsoft/vscode/blob/master/extensions/markdown-language-features/media/markdown.css */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+body {
+	font-family: var(--vscode-markdown-font-family, -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif);
+	font-size: var(--vscode-markdown-font-size, 14px);
+	padding: 0 26px;
+	line-height: var(--vscode-markdown-line-height, 22px);
+	word-wrap: break-word;
+}
+
+#code-csp-warning {
+	position: fixed;
+	top: 0;
+	right: 0;
+	color: white;
+	margin: 16px;
+	text-align: center;
+	font-size: 12px;
+	font-family: sans-serif;
+	background-color:#444444;
+	cursor: pointer;
+	padding: 6px;
+	box-shadow: 1px 1px 1px rgba(0,0,0,.25);
+}
+
+#code-csp-warning:hover {
+	text-decoration: none;
+	background-color:#007acc;
+	box-shadow: 2px 2px 2px rgba(0,0,0,.25);
+}
+
+body.scrollBeyondLastLine {
+	margin-bottom: calc(100vh - 22px);
+}
+
+body.showEditorSelection .code-line {
+	position: relative;
+}
+
+body.showEditorSelection .code-active-line:before,
+body.showEditorSelection .code-line:hover:before {
+	content: "";
+	display: block;
+	position: absolute;
+	top: 0;
+	left: -12px;
+	height: 100%;
+}
+
+body.showEditorSelection li.code-active-line:before,
+body.showEditorSelection li.code-line:hover:before {
+	left: -30px;
+}
+
+.vscode-light.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.15);
+}
+
+.vscode-light.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.40);
+}
+
+.vscode-light.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-dark.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.4);
+}
+
+.vscode-dark.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.60);
+}
+
+.vscode-dark.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-high-contrast.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 160, 0, 0.7);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 160, 0, 1);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+img {
+	max-width: 100%;
+	max-height: 100%;
+}
+
+a {
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+a:focus,
+input:focus,
+select:focus,
+textarea:focus {
+	outline: 1px solid -webkit-focus-ring-color;
+	outline-offset: -1px;
+}
+
+hr {
+	border: 0;
+	height: 2px;
+	border-bottom: 2px solid;
+}
+
+h1 {
+	padding-bottom: 0.3em;
+	line-height: 1.2;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+}
+
+h1, h2, h3 {
+	font-weight: normal;
+}
+
+table {
+	border-collapse: collapse;
+}
+
+table > thead > tr > th {
+	text-align: left;
+	border-bottom: 1px solid;
+}
+
+table > thead > tr > th,
+table > thead > tr > td,
+table > tbody > tr > th,
+table > tbody > tr > td {
+	padding: 5px 10px;
+}
+
+table > tbody > tr + tr > td {
+	border-top: 1px solid;
+}
+
+blockquote {
+	margin: 0 7px 0 5px;
+	padding: 0 16px 0 10px;
+	border-left-width: 5px;
+	border-left-style: solid;
+}
+
+code {
+	font-family: Menlo, Monaco, Consolas, "Droid Sans Mono", "Courier New", monospace, "Droid Sans Fallback";
+	font-size: 1em;
+	line-height: 1.357em;
+}
+
+body.wordWrap pre {
+	white-space: pre-wrap;
+}
+
+pre:not(.hljs),
+pre.hljs code > div {
+	padding: 16px;
+	border-radius: 3px;
+	overflow: auto;
+}
+
+pre code {
+	color: var(--vscode-editor-foreground);
+	tab-size: 4;
+}
+
+/** Theming */
+
+.vscode-light pre {
+	background-color: rgba(220, 220, 220, 0.4);
+}
+
+.vscode-dark pre {
+	background-color: rgba(10, 10, 10, 0.4);
+}
+
+.vscode-high-contrast pre {
+	background-color: rgb(0, 0, 0);
+}
+
+.vscode-high-contrast h1 {
+	border-color: rgb(0, 0, 0);
+}
+
+.vscode-light table > thead > tr > th {
+	border-color: rgba(0, 0, 0, 0.69);
+}
+
+.vscode-dark table > thead > tr > th {
+	border-color: rgba(255, 255, 255, 0.69);
+}
+
+.vscode-light h1,
+.vscode-light hr,
+.vscode-light table > tbody > tr + tr > td {
+	border-color: rgba(0, 0, 0, 0.18);
+}
+
+.vscode-dark h1,
+.vscode-dark hr,
+.vscode-dark table > tbody > tr + tr > td {
+	border-color: rgba(255, 255, 255, 0.18);
+}
+
+</style>
+
+<style>
+/* Tomorrow Theme */
+/* http://jmblog.github.com/color-themes-for-google-code-highlightjs */
+/* Original theme - https://github.com/chriskempson/tomorrow-theme */
+
+/* Tomorrow Comment */
+.hljs-comment,
+.hljs-quote {
+	color: #8e908c;
+}
+
+/* Tomorrow Red */
+.hljs-variable,
+.hljs-template-variable,
+.hljs-tag,
+.hljs-name,
+.hljs-selector-id,
+.hljs-selector-class,
+.hljs-regexp,
+.hljs-deletion {
+	color: #c82829;
+}
+
+/* Tomorrow Orange */
+.hljs-number,
+.hljs-built_in,
+.hljs-builtin-name,
+.hljs-literal,
+.hljs-type,
+.hljs-params,
+.hljs-meta,
+.hljs-link {
+	color: #f5871f;
+}
+
+/* Tomorrow Yellow */
+.hljs-attribute {
+	color: #eab700;
+}
+
+/* Tomorrow Green */
+.hljs-string,
+.hljs-symbol,
+.hljs-bullet,
+.hljs-addition {
+	color: #718c00;
+}
+
+/* Tomorrow Blue */
+.hljs-title,
+.hljs-section {
+	color: #4271ae;
+}
+
+/* Tomorrow Purple */
+.hljs-keyword,
+.hljs-selector-tag {
+	color: #8959a8;
+}
+
+.hljs {
+	display: block;
+	overflow-x: auto;
+	color: #4d4d4c;
+	padding: 0.5em;
+}
+
+.hljs-emphasis {
+	font-style: italic;
+}
+
+.hljs-strong {
+	font-weight: bold;
+}
+</style>
+
+<style>
+/*
+ * Markdown PDF CSS
+ */
+
+ body {
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif, "Meiryo";
+	padding: 0 12px;
+}
+
+pre {
+	background-color: #f8f8f8;
+	border: 1px solid #cccccc;
+	border-radius: 3px;
+	overflow-x: auto;
+	white-space: pre-wrap;
+	overflow-wrap: break-word;
+}
+
+pre:not(.hljs) {
+	padding: 23px;
+	line-height: 19px;
+}
+
+blockquote {
+	background: rgba(127, 127, 127, 0.1);
+	border-color: rgba(0, 122, 204, 0.5);
+}
+
+.emoji {
+	height: 1.4em;
+}
+
+code {
+	font-size: 14px;
+	line-height: 19px;
+}
+
+/* for inline code */
+:not(pre):not(.hljs) > code {
+	color: #C9AE75; /* Change the old color so it seems less like an error */
+	font-size: inherit;
+}
+
+/* Page Break : use <div class="page"/> to insert page break
+-------------------------------------------------------- */
+.page {
+	page-break-after: always;
+}
+
+</style>
+
+<script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+</head>
+<body>
+  <script>
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: document.body.classList.contains('vscode-dark') || document.body.classList.contains('vscode-high-contrast')
+          ? 'dark'
+          : 'default'
+    });
+  </script>
+<h1 id="cs-739-madkv-project-2">CS 739 MadKV Project 2</h1>
+<table>
+<thead>
+<tr>
+<th><strong>Group Members</strong></th>
+<th><strong>Name</strong></th>
+<th><strong>Email</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Member 1</strong></td>
+<td>Smit Shah</td>
+<td>spshah25@wisc.edu</td>
+</tr>
+<tr>
+<td><strong>Member 2</strong></td>
+<td>Srihari Sridharan</td>
+<td>srihari.sridharan@wisc.edu</td>
+</tr>
+</tbody>
+</table>
+<h2 id="design-walkthrough">Design Walkthrough</h2>
+<p><strong>Cluster Manager</strong></p>
+<h3 id="network-topology">Network Topology</h3>
+<p>Due to resource constraints on CloudLab, our cluster setup is structured such that all components—including servers, the cluster manager, and clients—are executed as separate processes within the same node. While this setup deviates from a distributed multi-node architecture, it allows us to simulate and test our system's behavior effectively without needing additional physical or virtual machines. This design choice ensures that we can evaluate the cluster’s coordination and request handling while adhering to the limitations of our testbed environment.</p>
+<h3 id="cluster-manager-interactions">Cluster Manager Interactions</h3>
+<p>The cluster manager (CM) is responsible for handling interactions between clients (C) and servers. The interaction flow follows a structured process:</p>
+<ul>
+<li><strong>Server Registration:</strong> Servers must register with the cluster manager upon initialization. Only after all servers are successfully registered does the manager expose server details to clients.</li>
+<li><strong>Client Requests:</strong> Clients contact the cluster manager to obtain server details before sending their requests. This ensures that clients only interact with fully initialized and registered servers.</li>
+<li><strong>Retry Mechanisms:</strong> Retries occur in multiple interactions:     - Client to Cluster Manager (CM): Clients retry requests to the CM if they fail to receive server details.     - Client to Server: Clients retry requests to servers in case of failures.     - Server to CM: Servers retry registration attempts with the CM until successful.     - Tracking Mechanism: The CM maintains a boolean tracker to monitor server registration status and ensure all servers are properly registered before responding to clients.     - Retry Interval: The retry interval is currently configured as 3 seconds to balance responsiveness and avoid excessive load.</li>
+</ul>
+<h3 id="partitioning-with-sdbm-hash">Partitioning with SDBM Hash</h3>
+<p>We considered adopting a static partitioning, SHA-256, FNV-1 and SDBM hash algorithms to determine the partitioning of keys. however, we chose the SDBM hash due to the following advantages it provides over the others:</p>
+<p>SDBM has a simple implementation using bitwise shifts and additions, making it easier to integrate compared to SHA-256, which requires complex cryptographic operations. It is significantly faster than SHA-256 due to its lightweight computation and also performs better than FNV-1 due to its efficient bitwise transformations. SDBM offers a balanced approach with better key distribution than FNV-1 and avoids clustering issues seen in static partitioning. SDBM is well-suited for distributed key-value stores, ensuring efficient key distribution and fast lookups without the overhead of cryptographic hashing or the imbalance of static partitioning.</p>
+<h3 id="database-management">Database Management</h3>
+<p>The database utilized by the cluster manager is local to the node. This simplifies deployment but requires careful handling of data repopulation in case of failures. To ensure consistent key mappings, we employ a hashing mechanism that determines the target server for each key. The <strong>sdbm</strong> hash function is used, with additional microbenchmarking to evaluate its effectiveness. Specifically, we analyze the first ten and last ten hash values to assess distribution quality. Additionally, we implement <strong>consistent hashing</strong> to provide resilience against server churn and improve load balancing.</p>
+<p>We initially went with one database across all servers as the source of truth for all state commands. After discussion with TA,
+we realized that the expectation for the assignment is not that. You are very welcome (and recommended) to incorporate your favorite local storage library,
+As per this line in the assignment specification, we must have a local DB for each server and not a single DB local to the cluster.
+Also, if we go with a single database for all servers, we must ensure its availability and fault tolerance.</p>
+<h3 id="optimizations-in-logging">Optimizations in Logging</h3>
+<p>One of our key optimizations involves reducing unnecessary storage overhead. Specifically, we exclude <strong>get</strong> and <strong>scan</strong> operations from the database logs, as their inclusion does not contribute to performance improvements or system durability. Instead, we focus on logging <strong>mutating operations</strong>, ensuring that key modifications are tracked efficiently.</p>
+<h3 id="api-and-data-model-design">API and Data Model Design:</h3>
+<h4 id="api-design-summary">API Design Summary</h4>
+<p>The API for the <strong>ClusterManagerService</strong> consists of two primary RPC methods:</p>
+<ol>
+<li>
+<p><strong>RegisterServer (ServiceRegistrationRequest) → ServiceRegistrationResponse</strong></p>
+<ul>
+<li>This RPC is invoked by a server at the start of its operation to register itself with the cluster manager. It accepts a <code>ServiceRegistrationRequest</code> containing the server's IP address and returns a <code>ServiceRegistrationResponse</code> with an empty response body.</li>
+<li><strong>Request Message</strong>: <code>ServiceRegistrationRequest</code>
+<ul>
+<li><code>ipAddress</code> (string): The IP address of the server to be registered.</li>
+</ul>
+</li>
+<li><strong>Response Message</strong>: <code>ServiceRegistrationResponse</code>
+<ul>
+<li>This response is empty, indicating successful registration.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>RegisterClient (EmptyRequest) → ClientRegistrationResponse</strong></p>
+<ul>
+<li>This RPC is invoked by a client at the start to register with the cluster manager. It accepts an <code>EmptyRequest</code> with no fields and returns a <code>ClientRegistrationResponse</code> containing a list of registered IP addresses of the clients.</li>
+<li><strong>Request Message</strong>: <code>EmptyRequest</code>
+<ul>
+<li>This message is intentionally empty, indicating no parameters needed for client registration.</li>
+</ul>
+</li>
+<li><strong>Response Message</strong>: <code>ClientRegistrationResponse</code>
+<ul>
+<li><code>ipAddress</code> (repeated string): A list of IP addresses of registered clients.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+<h4 id="data-model-description">Data Model Description</h4>
+<p>The data model is represented by the following table schema for <strong>state_machine_commands</strong>:</p>
+<pre class="hljs"><code><div><span class="hljs-keyword">CREATE</span> <span class="hljs-keyword">TABLE</span> <span class="hljs-keyword">IF</span> <span class="hljs-keyword">NOT</span> <span class="hljs-keyword">EXISTS</span> state_machine_commands (
+    <span class="hljs-built_in">timestamp</span> <span class="hljs-built_in">INTEGER</span> <span class="hljs-keyword">NOT</span> <span class="hljs-literal">NULL</span>,
+    command <span class="hljs-built_in">TEXT</span> <span class="hljs-keyword">NOT</span> <span class="hljs-literal">NULL</span>,
+    <span class="hljs-keyword">key</span> <span class="hljs-built_in">TEXT</span> <span class="hljs-keyword">NOT</span> <span class="hljs-literal">NULL</span>,
+    <span class="hljs-keyword">value</span> <span class="hljs-built_in">TEXT</span>
+);
+</div></code></pre>
+<h5 id="fields">Fields:</h5>
+<ol>
+<li><strong>timestamp</strong> (INTEGER, NOT NULL): The timestamp when the command is issued. Initially, this field served as the primary key, but it was removed as a constraint due to multiple clients sending requests at the same timestamp.</li>
+<li><strong>command</strong> (TEXT, NOT NULL): The command associated with the state machine operation. This is expected to take on values PUT, SWAP or DELETE.</li>
+<li><strong>key</strong> (TEXT, NOT NULL): The key associated with the state machine command. This typically identifies the resource or entity being manipulated by the command.</li>
+<li><strong>value</strong> (TEXT): An optional field holding the value associated with the key. This field may contain data that is either set or modified by the command.</li>
+</ol>
+<p>The <strong>timestamp</strong> field was initially the primary key for ensuring unique identification of commands. However, due to race conditions where multiple clients could issue commands at the same timestamp, the primary key constraint on this field was removed. This means the table can now handle multiple entries with the same timestamp, accommodating scenarios where clients send requests concurrently.</p>
+<h3 id="behaviour-during-scan">Behaviour during Scan:</h3>
+<p>All servers are contacted because the mapping of keys to servers is determined at runtime, which can impact scan performance. The RPC calls to all servers are performed in a multithreaded manner. If any server fails, the scan is retried indefinitely for that particular server. The scan is only considered complete once responses are received from all servers.</p>
+<h3 id="roadblocks-and-challenges">Roadblocks and Challenges</h3>
+<p>During development, one of the major challenges was transitioning from a <strong>global database</strong> (shared among all servers) to <strong>individual databases per server</strong>. While this approach initially seemed promising for distributed management, it did not inherently guarantee availability, being a single point of failure, leading us to refine our persistence strategy post the discussion with the Teaching Assistant.</p>
+<p>We did encounter <code>sending half channel closed as invalid UTF-8 data is sent.</code> This prompted us to validate input data at the server, particularly <strong>handling invalid UTF-8 characters</strong>. This is a <strong>Heisenbug</strong>, a type of elusive and non-deterministic bug that proved difficult to reproduce consistently. Debugging efforts focused on identifying scenarios where such characters entered the system and ensuring they were correctly handled or filtered before processing. As a result, we did alter between the string/byte data types in the protofile, across the map and repeated data structures. However, a repeated bytes of values is what proved fruitful to us in the end.</p>
+<h4 id="serialization-and-deserialization-serde-considerations">Serialization and Deserialization (SerDe) Considerations</h4>
+<p>In our implementation, we did not prioritize explicit serialization and deserialization mechanisms when storing data in the database. Since we use SQLite as our local storage engine, it inherently manages encoding and decoding processes efficiently. This design decision reduced the complexity of our implementation while ensuring data persistence.</p>
+<h2 id="self-provided-testcase">Self-provided Testcase</h2>
+<p>For this self-provided testcase, initially, multiple servers are set up, and various operations like Put, Swap, Get, and Scan are performed successfully across partitions. After killing one server, operations on unaffected partitions continue to succeed, while those involving the failed partition timeout. Once the failed server is restarted, a Get operation to retrieve a key from the recovered partition should return the most recent value, verifying the system's ability to recover and maintain data consistency. This is to be demonstrated in-person.</p>
+<h2 id="fuzz-testing">Fuzz Testing</h2>
+<p><u>Parsed the following fuzz testing results:</u></p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">num_servers</th>
+<th style="text-align:center">crashing</th>
+<th style="text-align:center">outcome</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">3</td>
+<td style="text-align:center">no</td>
+<td style="text-align:center">PASSED</td>
+</tr>
+<tr>
+<td style="text-align:center">3</td>
+<td style="text-align:center">yes</td>
+<td style="text-align:center">PASSED</td>
+</tr>
+<tr>
+<td style="text-align:center">5</td>
+<td style="text-align:center">yes</td>
+<td style="text-align:center">PASSED</td>
+</tr>
+</tbody>
+</table>
+<p>You will run a crashing/recovering fuzz test during demo time.</p>
+<h3 id="comments">Comments</h3>
+<p>Our fuzz testing has consistently produced correct outcomes. However, during the development cycle, we encountered intermittent failures with concurrent clients, including segmentation faults, channel timeouts due to incorrect output formats, and issues with UTF data transmission. Unfortunately, the error messages have not always been helpful in pinpointing the exact line of code or providing a clear stack trace.</p>
+<p>Debugging concurrent issues using GDB proved challenging, often leading to confusion and consuming significant time. At times, our current implementation still faces these issues, making them potential Heisenbugs. In practice, rerunning the test cases multiple times (typically 2-3 attempts) has generally led to a <strong>PASSED</strong> status.</p>
+<p>Since we do not have complete visibility into how the Rust-based fuzz tests are created and executed, adding debug statements and tracing the flow of execution has been difficult. The learning curve for debugging Rust proved to be steep, and given time constraints, we opted to focus on rerunning the service and client rather than diving deep into Rust debugging. Additional logging in the test cases did confirm the issues related to invalid UTF-8 inputs.</p>
+<h2 id="ycsb-benchmarking">YCSB Benchmarking</h2>
+<p><u>10 clients throughput/latency across workloads &amp; number of partitions:</u></p>
+<p><img src="plots-p2/ycsb-ten-clients.png" alt="ten-clients"></p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center"><img src="/../../report/plots-p2/first-10-chars-for-hash/ycsb-ten-clients.png" alt="first-10-chars-10-clients"></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center"><em>Comparison of the performance across using first 10 characters against the last 10 characters using SDBM hash.</em></td>
+</tr>
+</tbody>
+</table>
+<ol>
+<li>
+<p><strong>Scan Performance Exacerbates with More Servers</strong>:<br>
+As the number of servers increases, the scan performance degrades. This could be due to additional overhead from managing more partitions, resulting in slower retrieval times during scan operations.</p>
+</li>
+<li>
+<p><strong>Read Throughput is Relatively High with Low Variance</strong>:<br>
+Read throughput remains consistently high and stable across different server configurations. This indicates that adding more servers does not significantly affect the ability to process read requests, likely due to efficient read optimization mechanisms.</p>
+</li>
+<li>
+<p><strong>More Servers Improve Throughput</strong>:<br>
+As the number of servers increases, the system can handle more requests in parallel, leading to better throughput. This demonstrates the scalability benefits of a distributed architecture.</p>
+</li>
+<li>
+<p><strong>Throughput Saturates on Single Server</strong>:<br>
+With a single server, throughput quickly reaches its maximum limit. This suggests the server becomes a bottleneck, unable to handle more requests effectively as it runs out of capacity.</p>
+</li>
+<li>
+<p><strong>Single Client, Synchronous Requests</strong>:<br>
+For a single client, whether there is one server or multiple servers, request processing remains synchronous, meaning the throughput does not change with the addition of more servers, as the client is not making concurrent requests.</p>
+</li>
+<li>
+<p><strong>P99 &gt; Avg</strong>:<br>
+The 99th percentile latency (P99) is higher than the average latency, indicating that while most requests are processed quickly, there are a few outliers that take significantly longer to complete. While most requests are processed quickly, certain requests may experience delays due to factors like resource contention, network congestion, or temporary load spikes.</p>
+</li>
+<li>
+<p><strong>RMW (Read-Modify-Write) is Costlier than Update</strong>:<br>
+RMW operations, which involve reading a value, modifying it, and then writing it back, incur higher costs compared to simple update operations. This is likely due to the additional complexity of fetching and updating data in a consistent manner during RMW operations.</p>
+</li>
+</ol>
+<p><u>Agg. throughput trend vs. number of clients w/ and w/o partitioning:</u></p>
+<p><img src="plots-p2/ycsb-tput-trend.png" alt="tput-trend"></p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center"><img src="/../../report/plots-p2/first-10-chars-for-hash/ycsb-tput-trend.png" alt="first-10-chars-10-clients"></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center"><em>Comparison of the performance across using first 10 characters against the last 10 characters using SDBM hash.</em></td>
+</tr>
+</tbody>
+</table>
+<h2 id="bonus-content-implemented">Bonus Content Implemented</h2>
+<ul>
+<li>Fine grained partitioning using SDBM Hash utilizing key characters rather than static partitioning. Helps achieve load balancing to some extent in case of hotspot keys.</li>
+<li>Micro benchmarking using first 10 chars and last 10 chars of hash key (Interesting observation: Better throughput with last 10 chars)</li>
+<li>Invalid UTF-8 Data Logging (Interesting Observation)</li>
+<li>Additional test cases for completeness</li>
+</ul>
+<h2 id="additional-testcases">Additional Testcases</h2>
+<p>Below is the <strong>robustness testing table</strong> covering the test cases ensuring durability and partitioning while interacting with the key-value store.</p>
+<table>
+<thead>
+<tr>
+<th>Test Case</th>
+<th>Description</th>
+<th>Expected Behaviour</th>
+<th>Coverage</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>Cluster Manager is ON, but all servers fail to register. Clients cannot connect.</td>
+<td>Client retries indefinitely until a successful connection is established.</td>
+<td>Server registration, client connection retry logic.</td>
+</tr>
+<tr>
+<td>2</td>
+<td>Cluster Manager is ON, all servers register successfully, clients can connect.</td>
+<td>Clients connect successfully after retries, ensuring connection establishment.</td>
+<td>Server registration, client connection handling.</td>
+</tr>
+<tr>
+<td>3</td>
+<td>All servers are ON, but the Cluster Manager is unavailable. Clients cannot connect.</td>
+<td>Clients and servers keep retrying indefinitely until the Cluster Manager becomes available.</td>
+<td>Cluster Manager dependency, client retry logic.</td>
+</tr>
+<tr>
+<td>4</td>
+<td>An unknown server attempts to connect to the Cluster Manager.</td>
+<td>Connection is rejected, and clients are not informed about the unknown server.</td>
+<td>Unauthorized access prevention, security validation.</td>
+</tr>
+<tr>
+<td>5</td>
+<td>Cluster Manager is ON, all servers register, but some crashed. Operations like PUT, GET, SWAP, DELETE work on active servers, but SCAN does not function.</td>
+<td>Operations on active servers succeed, SCAN fails due to incomplete cluster view.</td>
+<td>Partial server availability, consistency of operations.</td>
+</tr>
+<tr>
+<td>6</td>
+<td>Some servers are killed and restarted. Previously stored keys should be available after restoration from the database.</td>
+<td>After restoration, all operations (PUT, GET, DELETE, SWAP) should return previously stored keys.</td>
+<td>Server failure and recovery, data persistence.</td>
+</tr>
+<tr>
+<td>7</td>
+<td>Multiple operations (PUT, GET, DELETE, SWAP) are invoked on the same key.</td>
+<td>The same server is contacted consistently for operations on the same key.</td>
+<td>Key-based request routing, consistency.</td>
+</tr>
+<tr>
+<td>8</td>
+<td>One server goes down, and SCAN operation is attempted.</td>
+<td>SCAN retries indefinitely until all inactive servers are back online.</td>
+<td>Handling of server failures, SCAN consistency.</td>
+</tr>
+</tbody>
+</table>
+<p>In addition to the table above, we made sure the <strong>robustness testing table</strong> for P1 is covered in P2 for a <strong>single client</strong> interacting with the key-value store.</p>
+<table>
+<thead>
+<tr>
+<th><strong>Test Case #</strong></th>
+<th><strong>Operation</strong></th>
+<th><strong>Description</strong></th>
+<th><strong>Expected Behavior</strong></th>
+<th><strong>Coverage</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>1</strong></td>
+<td>Scan</td>
+<td><code>startKey &gt; endKey</code></td>
+<td>Returns an empty result or an error</td>
+<td>Edge case handling of range queries</td>
+</tr>
+<tr>
+<td><strong>2</strong></td>
+<td>Scan</td>
+<td>Neither start nor end key exists</td>
+<td>Returns an empty scan response</td>
+<td>Handling of missing keys in range queries</td>
+</tr>
+<tr>
+<td><strong>3</strong></td>
+<td>Scan</td>
+<td>Only one of start/end key exists</td>
+<td>Returns partial results from the existing key onwards</td>
+<td>Partial range query handling</td>
+</tr>
+<tr>
+<td><strong>4</strong></td>
+<td>Scan</td>
+<td><code>startKey == endKey</code></td>
+<td>Returns that single key if it exists, else empty</td>
+<td>Ensures correct boundary case behavior</td>
+</tr>
+<tr>
+<td><strong>5</strong></td>
+<td>Linearizability</td>
+<td>&gt;2 concurrent clients are operating.</td>
+<td>Linearizability of operations are expected.</td>
+<td>Single threaded nature of server is covered and consistency model is as expected.</td>
+</tr>
+<tr>
+<td><strong>6</strong></td>
+<td>Put/Get</td>
+<td>Keys/values are purely numeric</td>
+<td>Should behave normally, store and retrieve as expected</td>
+<td>Checks handling of numeric keys/values</td>
+</tr>
+<tr>
+<td><strong>7</strong></td>
+<td>Delete</td>
+<td>Key does not exist</td>
+<td>Returns <code>success = false</code></td>
+<td>Proper handling of deletion for missing keys</td>
+</tr>
+<tr>
+<td><strong>8</strong></td>
+<td>Delete + Get</td>
+<td>Delete a key and then attempt to Get it</td>
+<td><code>Get</code> should return <code>null</code> or <code>success = false</code></td>
+<td>Ensures proper deletion and cleanup</td>
+</tr>
+<tr>
+<td><strong>9</strong></td>
+<td>Delete + Get</td>
+<td>A prefix/suffix of the deleted key is present</td>
+<td>Prefix/suffix should still exist unaffected</td>
+<td>Ensures selective deletion</td>
+</tr>
+<tr>
+<td><strong>10</strong></td>
+<td>Get</td>
+<td>Request for a missing key</td>
+<td>Should return <code>null</code> or <code>success = false</code></td>
+<td>Correct handling of absent keys</td>
+</tr>
+<tr>
+<td><strong>11</strong></td>
+<td>Get</td>
+<td>Request for an existing key</td>
+<td>Should return stored value with <code>success = true</code></td>
+<td>Ensures data retrieval is correct</td>
+</tr>
+<tr>
+<td><strong>12</strong></td>
+<td>Get</td>
+<td>Key is <code>null</code></td>
+<td>Treat the string <code>null</code> as the key to get.</td>
+<td>Edge case handling for unexpected input.</td>
+</tr>
+<tr>
+<td><strong>13</strong></td>
+<td>Put</td>
+<td>Key with value <code>&quot;null&quot;</code></td>
+<td>Should store <code>&quot;null&quot;</code> as a valid value</td>
+<td>Ensures &quot;null&quot; is treated as a valid string</td>
+</tr>
+<tr>
+<td><strong>14</strong></td>
+<td>STOP</td>
+<td>Disconnects a client from the server.</td>
+<td>Command should stop and exit and no commands entered after this shall be processed.</td>
+<td>Ensures clients are disconnected.</td>
+</tr>
+<tr>
+<td><strong>15</strong></td>
+<td>Swap</td>
+<td>Swap a key that doesn’t exist</td>
+<td>Should add key with new value, return <code>success = false</code></td>
+<td>Ensures correct behavior for missing keys</td>
+</tr>
+<tr>
+<td><strong>16</strong></td>
+<td>Swap</td>
+<td>Swap an existing key</td>
+<td>Should replace value and return old value with <code>success = true</code></td>
+<td>Ensures correct swapping functionality</td>
+</tr>
+<tr>
+<td><strong>17</strong></td>
+<td>Swap</td>
+<td>Swap a <code>null</code> key</td>
+<td>Treat the string <code>null</code> as a key.</td>
+<td>Ensures robustness against null keys</td>
+</tr>
+</tbody>
+</table>
+
+</body>
+</html>

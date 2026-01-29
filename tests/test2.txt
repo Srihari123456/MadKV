@@ -1,0 +1,21 @@
+GET sabrina
+DELETE sabrina
+SWAP sabrina carpenter
+PUT tom cruise
+PUT madison wi
+PUT mad wi
+PUT guanzhou hu
+GET guanzhou
+DELETE madison
+GET mad
+GET madison
+PUT smit shah
+PUT andrea dusseau
+PUT srihari s
+PUT remzi dusseau
+PUT jim gray
+PUT file systems
+SCAN amazon google
+DELETE remzi
+SCAN remzi wisconsin
+STOP

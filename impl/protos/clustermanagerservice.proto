@@ -1,0 +1,30 @@
+syntax = "proto3";
+
+package keyvalue;
+
+// Define the key-value service
+service ClusterManagerService {
+  // Invoked by server at the start to get the intial range of keys
+  rpc RegisterServer (ServiceRegistrationRequest) returns (ServiceRegistrationResponse);
+
+  // Invoked by server at the start to get the intial range of keys
+  rpc RegisterClient (EmptyRequest) returns (ClientRegistrationResponse);
+}
+
+message EmptyRequest {}  //  Define an empty request type
+
+
+message ServiceRegistrationRequest {
+ string ipAddress = 1;
+ int64 partitionId = 2;
+}
+
+message ServiceRegistrationResponse {
+  // Empty Response
+}
+
+message ClientRegistrationResponse {
+  repeated string ipAddress = 1;
+  int64 serverReplicationFactor = 2;
+}
+

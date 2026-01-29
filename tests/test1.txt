@@ -1,0 +1,25 @@
+PUT 1 value2
+PUT 10 value2
+PUT 2 value2
+SCAN 8 9
+GET 2
+DELETE 2
+PUT 3 value3
+PUT 4 value4
+PUT 5 value5
+SCAN 4 4
+PUT 6 value6
+PUT 7 value7
+PUT 8 value8
+SCAN 1 2
+SWAP 7 value77
+SWAP 11 value11
+SCAN 1 99
+GET null
+PUT null key_is_null
+GET null
+SWAP null key_is_still_null
+GET null
+STOP
+GET 2
+STOP

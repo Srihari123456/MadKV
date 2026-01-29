@@ -1,0 +1,9 @@
+syntax = "proto3";
+
+package keyvalue;
+
+// Define the key-value service
+service RaftService {
+  
+}
+

@@ -1,0 +1,4 @@
+--- Average Execution Times ---
+PutKey average execution time: 889.54 microseconds
+GetKey average execution time: 923.34 microseconds
+SwapKey average execution time: 928.24 microseconds

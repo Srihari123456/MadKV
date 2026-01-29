@@ -1,0 +1,3 @@
+--- Average Execution Times ---
+PutKey average execution time: 4.56 microseconds
+GetKey average execution time: 2.03 microseconds

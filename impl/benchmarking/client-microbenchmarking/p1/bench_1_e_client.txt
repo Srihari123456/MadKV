@@ -1,0 +1,3 @@
+--- Average Execution Times ---
+PutKey average execution time: 892.27 microseconds
+ScanKey average execution time: 1006.96 microseconds
